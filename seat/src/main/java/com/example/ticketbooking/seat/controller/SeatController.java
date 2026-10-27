@@ -1,8 +1,10 @@
 package com.example.ticketbooking.seat.controller;
 
-
 import com.example.ticketbooking.seat.exception.SeatNotFoundException;
 import com.example.ticketbooking.seat.service.SeatService;
+import com.example.ticketbooking.shared.seat.CreateSeatDTO;
+import com.example.ticketbooking.shared.seat.SeatDTO;
+import com.example.ticketbooking.shared.seat.UpdateSeatDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,37 +15,39 @@ import java.util.List;
 @RequestMapping("/api/seats")
 public class SeatController {
 
-
     private final SeatService seatService;
 
     public SeatController(SeatService seatService) {
         this.seatService = seatService;
     }
 
-    @PostMapping("/createSeat")
+    @PostMapping
     public ResponseEntity<SeatDTO> createSeat(@RequestBody CreateSeatDTO createSeatDTO) {
         SeatDTO createdSeat = seatService.createSeat(createSeatDTO);
         return new ResponseEntity<>(createdSeat, HttpStatus.CREATED);
     }
 
-    @GetMapping("/getSeat/{seatId}")
+    @GetMapping("/{seatId}")
     public ResponseEntity<SeatDTO> getSeat(@PathVariable Long seatId) {
         SeatDTO seatDTO = seatService.getSeat(seatId).orElseThrow(() ->
-                new SeatNotFoundException("Seat not found with ID "+seatId));
+                new SeatNotFoundException("Seat not found with ID " + seatId));
         return new ResponseEntity<>(seatDTO, HttpStatus.OK);
     }
-    @PutMapping
-    public ResponseEntity<SeatDTO> updateSeat(Long seatId, @RequestBody UpdateSeatDTO updateSeatDTO) {
+
+    @PutMapping("/{seatId}")
+    public ResponseEntity<SeatDTO> updateSeat(@PathVariable Long seatId, @RequestBody UpdateSeatDTO updateSeatDTO) {
         SeatDTO seatDTO = seatService.updateSeat(seatId, updateSeatDTO);
         return new ResponseEntity<>(seatDTO, HttpStatus.OK);
     }
-    @DeleteMapping("/deleteSeat/{seatId}")
-    public ResponseEntity<SeatDTO> deleteSeat(@PathVariable Long seatId) {
+
+    @DeleteMapping("/{seatId}")
+    public ResponseEntity<Void> deleteSeat(@PathVariable Long seatId) {
         seatService.deleteSeat(seatId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    @GetMapping("/getAllSeates")
-    public ResponseEntity<List<SeatDTO>> getAllSeat() {
+
+    @GetMapping
+    public ResponseEntity<List<SeatDTO>> getAllSeats() {
         List<SeatDTO> seatDTOS = seatService.getAllSeates();
         return new ResponseEntity<>(seatDTOS, HttpStatus.OK);
     }

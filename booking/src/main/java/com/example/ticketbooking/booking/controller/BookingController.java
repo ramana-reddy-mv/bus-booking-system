@@ -2,9 +2,9 @@ package com.example.ticketbooking.booking.controller;
 
 import com.example.ticketbooking.booking.exception.BookingNotFoundException;
 import com.example.ticketbooking.booking.service.BookingService;
-import com.trucare.ticketbooking.shared.booking.BookingDTO;
-import com.trucare.ticketbooking.shared.booking.CreateBookingDTO;
-import com.trucare.ticketbooking.shared.booking.UpdateBookingDTO;
+import com.example.ticketbooking.shared.booking.BookingDTO;
+import com.example.ticketbooking.shared.booking.CreateBookingDTO;
+import com.example.ticketbooking.shared.booking.UpdateBookingDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/bookings")
 public class BookingController {
-
 
     private final BookingService bookingService;
 
@@ -35,8 +34,8 @@ public class BookingController {
         return new ResponseEntity<>(bookingDTO, HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<BookingDTO> updateBooking(Long bookingId, @RequestBody UpdateBookingDTO updateBookingDTO) {
+    @PutMapping("/{bookingId}")
+    public ResponseEntity<BookingDTO> updateBooking(@PathVariable Long bookingId, @RequestBody UpdateBookingDTO updateBookingDTO) {
         BookingDTO bookingDTO = bookingService.updateBooking(bookingId, updateBookingDTO);
         return new ResponseEntity<>(bookingDTO, HttpStatus.OK);
     }

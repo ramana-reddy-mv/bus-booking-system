@@ -1,6 +1,8 @@
 package com.example.ticketbooking.seat.service;
 
-
+import com.example.ticketbooking.shared.seat.CreateSeatDTO;
+import com.example.ticketbooking.shared.seat.SeatDTO;
+import com.example.ticketbooking.shared.seat.UpdateSeatDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

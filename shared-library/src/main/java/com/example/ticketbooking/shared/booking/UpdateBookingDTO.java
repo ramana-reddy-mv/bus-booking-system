@@ -21,7 +21,7 @@ public class UpdateBookingDTO {
 
     private LocalDateTime bookingDate;
 
-    private Long busID;
+    private Long busId;
 
     private Long userId;
 }

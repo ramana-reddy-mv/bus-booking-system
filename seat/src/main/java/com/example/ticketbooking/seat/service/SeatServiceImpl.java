@@ -1,10 +1,12 @@
 package com.example.ticketbooking.seat.service;
 
-import com.example.ticketbooking.seat.exception.SeatNotFoundException;
-
 import com.example.ticketbooking.seat.entity.Seat;
+import com.example.ticketbooking.seat.exception.SeatNotFoundException;
 import com.example.ticketbooking.seat.mapper.SeatMapper;
 import com.example.ticketbooking.seat.repository.SeatRepository;
+import com.example.ticketbooking.shared.seat.CreateSeatDTO;
+import com.example.ticketbooking.shared.seat.SeatDTO;
+import com.example.ticketbooking.shared.seat.UpdateSeatDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

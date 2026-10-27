@@ -1,9 +1,12 @@
 package com.example.ticketbooking.user.controller;
 
+import com.example.ticketbooking.shared.user.CreateUserDTO;
+import com.example.ticketbooking.shared.user.UpdateUserDTO;
+import com.example.ticketbooking.shared.user.UserDTO;
 import com.example.ticketbooking.user.service.UserService;
 import jakarta.validation.Valid;
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;

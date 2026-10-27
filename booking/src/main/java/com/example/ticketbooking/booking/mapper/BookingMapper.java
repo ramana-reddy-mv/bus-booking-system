@@ -1,10 +1,9 @@
 package com.example.ticketbooking.booking.mapper;
 
-
 import com.example.ticketbooking.booking.entity.Booking;
-import com.trucare.ticketbooking.shared.booking.BookingDTO;
-import com.trucare.ticketbooking.shared.booking.CreateBookingDTO;
-import com.trucare.ticketbooking.shared.booking.UpdateBookingDTO;
+import com.example.ticketbooking.shared.booking.BookingDTO;
+import com.example.ticketbooking.shared.booking.CreateBookingDTO;
+import com.example.ticketbooking.shared.booking.UpdateBookingDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -21,5 +20,4 @@ public interface BookingMapper {
 
     @Mapping(source = "bookingId", target = "bookingId")
     Booking toBookingEntity(UpdateBookingDTO updateBookingDTO);
-
 }
