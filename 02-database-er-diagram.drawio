@@ -1,0 +1,88 @@
+<mxfile host="drawio-plugin" modified="2026-10-28T11:11:20.408Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="22.1.22" etag="H8yTME-qHCTc6pnbty5w" type="embed">
+  <diagram id="02-database-er-diagram" name="Database ER Diagram V1">
+    <mxGraphModel dx="592" dy="457" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1120" pageHeight="969" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="operator" value="&lt;b&gt;OPERATOR&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;name&lt;br&gt;status&lt;br&gt;contact_details" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#70ad47;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="30" y="40" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bus" value="&lt;b&gt;BUS&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; operator_id&lt;br&gt;registration_number&lt;br&gt;bus_type&lt;br&gt;total_seats" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4f81bd;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="280" y="40" width="220" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="seat" value="&lt;b&gt;SEAT&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; bus_id&lt;br&gt;seat_number&lt;br&gt;seat_type" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4f81bd;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="560" y="40" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="route" value="&lt;b&gt;ROUTE&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;name&lt;br&gt;source&lt;br&gt;destination" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#70ad47;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="30" y="260" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="trip" value="&lt;b&gt;TRIP&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; bus_id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; route_id&lt;br&gt;departure_at&lt;br&gt;arrival_at&lt;br&gt;base_fare&lt;br&gt;status" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#70ad47;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="280" y="250" width="220" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="tripstop" value="&lt;b&gt;TRIP_STOP&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; trip_id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; stop_id&lt;br&gt;stop_sequence&lt;br&gt;arrival_at&lt;br&gt;departure_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#70ad47;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="560" y="250" width="220" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="stop" value="&lt;b&gt;STOP&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;name&lt;br&gt;city&lt;br&gt;type" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#70ad47;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="840" y="270" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="user" value="&lt;b&gt;USER&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;name&lt;br&gt;email (unique)&lt;br&gt;phone&lt;br&gt;password_hash&lt;br&gt;role&lt;br&gt;status" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#bf9000;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="30" y="510" width="190" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="booking" value="&lt;b&gt;BOOKING&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; user_id&lt;br&gt;booking_reference (unique)&lt;br&gt;status&lt;br&gt;total_amount&lt;br&gt;created_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#bf9000;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="280" y="510" width="220" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="bookingseat" value="&lt;b&gt;BOOKING_SEAT&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; booking_id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; trip_id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; seat_id&lt;br&gt;fare" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#bf9000;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="560" y="510" width="220" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="allocation" value="&lt;b&gt;SEAT_ALLOCATION&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; trip_id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; seat_id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; booking_id (nullable)&lt;br&gt;status&lt;br&gt;hold_expires_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="840" y="500" width="230" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="payment" value="&lt;b&gt;PAYMENT&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; booking_id&lt;br&gt;provider_reference&lt;br&gt;amount&lt;br&gt;status&lt;br&gt;created_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8e7cc3;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="280" y="760" width="220" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="refund" value="&lt;b&gt;REFUND&lt;/b&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; payment_id&lt;br&gt;amount&lt;br&gt;status&lt;br&gt;created_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8e7cc3;fontSize=12;align=left;verticalAlign=top;spacing=6;" parent="1" vertex="1">
+          <mxGeometry x="610" y="760" width="220" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="1000" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="operator" target="bus" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1001" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="bus" target="seat" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1002" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="route" target="trip" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1003" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="bus" target="trip" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1004" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="trip" target="tripstop" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1005" value="N : 1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="tripstop" target="stop" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1006" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="user" target="booking" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1007" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="booking" target="bookingseat" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1008" value="1 : N over time" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="seat" target="bookingseat" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1009" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="trip" target="allocation" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1010" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="booking" target="allocation" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1011" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="booking" target="payment" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1012" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" parent="1" source="payment" target="refund" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
