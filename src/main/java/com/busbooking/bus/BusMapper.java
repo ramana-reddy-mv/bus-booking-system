@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 public interface BusMapper {
 
     @Mapping(source = "busId", target = "busId")
+    @Mapping(source = "operator.userId", target = "operatorId")
     BusDTO toBusDTO(Bus bus);
 
     Bus toBusEntity(CreateBusDTO createBusDTO);

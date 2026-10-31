@@ -12,7 +12,9 @@ public interface SeatMapper {
     @Mapping(source = "seatId", target = "seatId")
     SeatDTO toSeatDTO(Seat seat);
 
+    @Mapping(source = "busId", target = "bus.busId")
     Seat toSeatEntity(CreateSeatDTO createSeatDTO);
 
+    @Mapping(source = "busId", target = "bus.busId")
     Seat toSeatEntity(UpdateSeatDTO updateSeatDTO);
 }

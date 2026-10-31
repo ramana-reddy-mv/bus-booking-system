@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         //user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // Set validated roles on the User entity
-        user.setRole(Role.USER);
+        user.setRole(createUserDTO.getRole());
 
         // Save the User entity to the repository
         User savedUser = userRepository.save(user);

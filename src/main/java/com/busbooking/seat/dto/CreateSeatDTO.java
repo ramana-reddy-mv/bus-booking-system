@@ -1,6 +1,10 @@
 package com.busbooking.seat.dto;
 
+import com.busbooking.seat.DeckType;
 import com.busbooking.seat.SeatType;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,13 +20,9 @@ public class CreateSeatDTO {
 
     private SeatType seatType;
 
-    private Integer availableSeats;
-
-    private BigDecimal farePerSeat;
-
-    private boolean isAvailable;
-
-    private Long bookingId;
-
     private Long busId;
+
+    private DeckType deckType;
+
+    private boolean windowSeat;
 }

@@ -47,9 +47,8 @@ public class SeatServiceImpl implements SeatService {
                         .orElseThrow(() -> new SeatNotFoundException("seat not found with id "+seatId));
         Optional.ofNullable(updateSeatDTO.getSeatType()).ifPresent(existingUser::setSeatType);
         Optional.ofNullable(updateSeatDTO.getSeatNumber()).ifPresent(existingUser::setSeatNumber);
-        Optional.ofNullable(updateSeatDTO.getAvailableSeats()).ifPresent(existingUser::setAvailableSeats);
-        Optional.ofNullable(updateSeatDTO.getBookingId()).ifPresent(existingUser::setBookingId);
-        Optional.ofNullable(updateSeatDTO.getFarePerSeat()).ifPresent(existingUser::setFarePerSeat);
+        Optional.ofNullable(updateSeatDTO.getDeckType()).ifPresent(existingUser::setDeckType);
+        Optional.of(updateSeatDTO.isWindowSeat()).ifPresent(existingUser::setWindowSeat);
         return seatMapper.toSeatDTO(existingUser);
     }
 

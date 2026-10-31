@@ -16,5 +16,5 @@ public class CreateBusDTO {
 
     private Integer totalSeats;
 
-    private Long routeId;
+    private Long operatorId;
 }

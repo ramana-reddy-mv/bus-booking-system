@@ -1,5 +1,6 @@
 package com.busbooking.seat;
 
+import com.busbooking.bus.Bus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +10,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
-@Table(name = "bus_table")
+@Table(name = "seat_table")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Seat {
@@ -25,18 +26,14 @@ public class Seat {
     @Enumerated(EnumType.STRING)
     private SeatType seatType;
 
-    @Column(nullable = false)
-    private Integer availableSeats;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bus_id", referencedColumnName = "busId", nullable = false)
+    private Bus bus;
 
     @Column(nullable = false)
-    private BigDecimal farePerSeat;
+    @Enumerated(EnumType.STRING)
+    private DeckType deckType;
 
     @Column(nullable = false)
-    private boolean isAvailable;
-
-    @Column(nullable = false)
-    private Long bookingId;
-
-    @Column(nullable = false, unique = true)
-    private Long busId;
+    private boolean windowSeat;
 }

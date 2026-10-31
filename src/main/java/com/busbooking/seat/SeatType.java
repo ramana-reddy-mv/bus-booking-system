@@ -1,7 +1,6 @@
 package com.busbooking.seat;
 
 public enum SeatType {
-    AC,
-    NON_AC,
+    SEATER,
     SLEEPER
 }

@@ -28,6 +28,7 @@ bus-booking-system/
 │   │   │   ├── config/
 │   │   │   ├── route/
 │   │   │   ├── seat/
+│   │   │   ├── trip/
 │   │   │   └── user/
 │   │   └── resources/
 │   └── test/
@@ -129,30 +130,68 @@ The codebase is organized around these domain areas:
 -   **Route:** route and stop information
 -   **Seat:** seat definitions and seat-related operations
 -   **Booking:** booking workflows
+-   **Trip:** trip creation and search by origin, destination, and travel date
 
 The scope and completion status of individual endpoints may change
 during V1 development.
 
-## Planned V1 Capabilities
+### Trip API
 
--   Search trips by source, destination, and travel date
--   View trip details, fares, and seat availability
--   Select seats and create bookings
--   Integrate a payment gateway
--   Confirm bookings only after verified payment
--   Provide booking history and cancellation flows
--   Add role-based access for customers, operators, and administrators
--   Send booking notifications
+Create a trip with `POST /api/trips`:
 
-These are planned capabilities, not a claim that every feature is
-already implemented.
+``` json
+{
+  "busId": 1,
+  "routeId": 1,
+  "departureTime": "08:30:00",
+  "arrivalTime": "18:45:00",
+  "fare": 1250.00,
+  "travelDate": "2026-11-01"
+}
+```
+
+Search trips with
+`GET /api/trips/search?source=Bengaluru&destination=Hyderabad&date=2026-11-01`.
+The search is case-insensitive and returns an empty list when no trips
+match.
+
+## Booking Workflow
+
+Get and initialize trip seat availability with `GET /api/trips/{tripId}/seats`.
+Create a booking and hold its seats for five minutes with `POST /api/bookings`:
+
+```json
+{
+  "userId": 1,
+  "tripId": 50,
+  "seatIds": [11, 12]
+}
+```
+
+Process mock payment with `POST /api/bookings/{bookingId}/payment?userId=1`
+and body `{"success":true}`. Cancel a confirmed booking with
+`POST /api/bookings/{bookingId}/cancel?userId=1`. Read one booking with
+`GET /api/bookings/{bookingId}?userId=1`, or list bookings with
+`GET /api/bookings/my-bookings?userId=1`.
+
+Each booking stores per-seat fare snapshots and its total. Trip-level
+pessimistic locking plus a unique `(trip_id, seat_id)` database constraint
+prevents concurrent double booking. Expired holds are released during
+availability and booking operations.
+
+Authentication is intentionally not configured in V1. `userId` is supplied
+by the client and is used only to associate bookings and check owner IDs; it
+is not a secure identity or authorization boundary. Add authentication
+before exposing these endpoints to untrusted clients.
+
+The current booking schema uses `booking_v1_table`, `booking_seat_v1_table`,
+and `seat_allocation_v1_table`. Existing booking records are not migrated.
 
 ## Important Engineering Considerations
 
 -   Hash passwords; never store plaintext passwords.
--   Protect customer-specific endpoints with authentication and
-    authorization.
--   Enforce booking ownership when viewing or cancelling bookings.
+-   Add authentication and server-derived customer identity before relying
+    on booking owner checks.
 -   Prevent double-booking with database constraints and transactional
     seat-reservation logic.
 -   Verify payment webhooks before marking bookings as paid or

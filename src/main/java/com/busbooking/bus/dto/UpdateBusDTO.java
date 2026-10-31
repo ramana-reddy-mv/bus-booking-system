@@ -18,6 +18,5 @@ public class UpdateBusDTO {
 
     private Integer totalSeats;
 
-    private Long routeId;
-
+    private Long operatorId;
 }

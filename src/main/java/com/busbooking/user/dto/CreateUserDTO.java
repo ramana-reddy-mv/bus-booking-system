@@ -1,6 +1,7 @@
 package com.busbooking.user.dto;
 
 
+import com.busbooking.user.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -34,4 +35,7 @@ public class CreateUserDTO {
 
     @NotBlank(message = "Phone number cannot be null or empty")
     private String phoneNumber;
+
+    @NotNull(message = "Role cannot be null")
+    private Role role;
 }

@@ -19,7 +19,5 @@ public class BusDTO {
 
     private Integer totalSeats;
 
-    private Long routeId;
-
-    private RouteDTO routeDetails;
+    private Long operatorId;
 }

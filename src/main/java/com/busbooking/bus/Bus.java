@@ -1,5 +1,6 @@
 package com.busbooking.bus;
 
+import com.busbooking.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +27,8 @@ public class Bus {
     @Column(nullable = false)
     private Integer totalSeats;
 
-    @Column(nullable = false)
-    private Long routeId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "operator_id", nullable = false)
+    private User operator;
 
 }
